@@ -4,9 +4,10 @@
  <script type="text/javascript">
  $(document).ready(function () {
 	    $('#datatablesSimple').DataTable({
-	        paging: false,
+	 /*        paging: false,
 	        ordering: false,
-	        info: false,
+	        "searching": false,
+	        info: false, */
 	    });
 	});
   </script>

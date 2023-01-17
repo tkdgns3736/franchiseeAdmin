@@ -49,6 +49,11 @@
 			alert(year+" - "+month +"Code : "+gropCode);
 		});
 	    
+	  	
+	    <%-- 테이블 --%>
+	    $('#datatablesSimple').DataTable();
+	    
+	    
 	})
   </script>
   <style>
@@ -56,6 +61,8 @@
   .datatablesSimple th{text-align: center !important; vertical-align: middle; !important;}
   .datatablesSimple thead tr th{text-align: center !important; vertical-align: middle; !important;}
   .datatablesSimple td{text-align: center !important; vertical-align: middle; !important;}
+  
+	table {font-size: 80%;}
   </style>
         
      	 <jsp:include page="/WEB-INF/jsp/layout/topLayout.jsp"/>
@@ -91,29 +98,28 @@
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
-                                월별정산내역
+                                월별 정산 내역
                             </div>
                             <div class="card-body">
-                                  <table id="datatablesSimple">
-							
+                                  <table id="datatablesSimple" class="datatablesSimple" style="width:100% ">
                                     <thead>
                                       <tr>
 									      <th rowspan="2">날짜</th>
 									      <th colspan="3">계좌입금</th>
 									      <th colspan="3">포인트입금</th>
 									      <th colspan="3">사용</th>
-									      <th rowspan="2">수수료합계</th>
+									      <th rowspan="2">수수료<br>합계</th>
 									    </tr>
 									    <tr>
 									      <th>건수</th>
 									      <th>금액</th>
-									      <th>수수료 소계</th>
+									      <th>수수료<br>소계</th>
 									      <th>건수</th>
 									      <th>금액</th>
-									      <th>수수료 소계</th>
+									      <th>수수료<br>소계</th>
 									      <th>건수</th>
 									      <th>금액</th>
-									      <th>수수료 소계</th>
+									      <th>수수료<br>소계</th>
 									    </tr>
                                     </thead>
                                     <tfoot>
