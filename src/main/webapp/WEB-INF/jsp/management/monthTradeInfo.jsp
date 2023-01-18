@@ -70,25 +70,26 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                    
+                    	<h2 class="mt-2">월별정산관리</h2>	
+                    	
                     	<div class="row">
-	                    	<div class="col-sm-5">
-	                        	<h1 class="mt-4">월별정산관리</h1>	
+	                    	<div class="col-sm-4">
+	                        	
 	                        </div>
-	                        <div class="col-sm-7">
-		                        <form class= "form-inline mt-5" >
-		                          	<div class="input-group">
-										<p class="h4 ms-2">그룹코드&nbsp;</p>
-										<select class="form-select form-select-sm">
+	                        <div class="col-sm-8">
+		                        <form class= "form-inline mt-2" >
+		                          	<div class="input-group ">
+										<p class="h4 ms-2" style="font-weight: 300;">그룹코드&nbsp;</p>
+										<select class="form-select  form-control-sm" style="height: 0px;">
 										  <option selected></option>
 										  <option value="1">One</option>
 										  <option value="2">Two</option>
 										  <option value="3">Three</option>
 										</select>
-			                			<p class="h5  ms-2">조회일자&nbsp;</p>
-			                		<input class="form-control form-control-sm ms-2 " id="date-picker-year"  type="text" />
-			                		<input class="form-control form-control-sm ms-2 " id="date-picker-month" type="text" />
-			                    	<button class="btn btn-primary" type="button" id="date-picker"><i class="fas fa-search"></i></button>
+			                			<p class="h4 ms-2" style="font-weight: 300;">조회일자&nbsp;</p>
+			                		<input class="form-control form-control-sm ms-2 " id="date-picker-year"  type="text"  style="font-size: -0.125rem; height: 34px;" />
+			                		<input class="form-control form-control-sm ms-2 " id="date-picker-month" type="text"  style="font-size: -0.125rem; height: 34px;"/>
+			                    	<button class="btn btn-primary " type="button" id="date-picker" style="height: 34px;"><i class="fas fa-search"></i></button>
 		                			</div>
 		            			</form>
 	            			</div>
