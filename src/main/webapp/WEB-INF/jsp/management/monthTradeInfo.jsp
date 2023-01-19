@@ -58,9 +58,9 @@
   </script>
   <style>
   
-  .datatablesSimple th{text-align: center !important; vertical-align: middle; !important;}
-  .datatablesSimple thead tr th{text-align: center !important; vertical-align: middle; !important;}
-  .datatablesSimple td{text-align: center !important; vertical-align: middle; !important;}
+  .table-striped th{text-align: center !important; vertical-align: middle; !important;}
+  .table-striped thead tr th{text-align: center !important; vertical-align: middle; !important;}
+  .table-striped td{text-align: center !important; vertical-align: middle; !important;}
   
 	table {font-size: 80%;}
   </style>
@@ -102,7 +102,8 @@
                                 월별 정산 내역
                             </div>
                             <div class="card-body">
-                                  <table id="datatablesSimple" class="datatablesSimple" style="width:100% ">
+                           	 	<div class="table-responsive">
+                                  <table id="datatablesSimple" class="table table-striped" style="width:100% ">
                                     <thead>
                                       <tr>
 									      <th rowspan="2">날짜</th>
@@ -151,6 +152,7 @@
 										</c:forEach>
                                     </tbody>                        
                            		</table>
+                            </div>
                             </div>
                         </div>
                     </div>
