@@ -24,14 +24,10 @@
                                                 <input class="form-check-input" id="inputRememberPassword" type="checkbox" value="" />
                                                 <label class="form-check-label" for="inputRememberPassword">아이디 저장</label>
                                             </div>
-                                            <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <a class="small" href="page/franch/findPass">비밀번호 찾기</a>
-                                                <a class="btn btn-primary" href="page/management/monthTradeInfo">로그인</a>
+                                            <div class="d-flex align-items-center justify-content-between mt-4 mb-0" style="float:right;">    
+                                                <a class="btn btn-primary" href="page/management/monthTradeInfo" >로그인</a>
                                             </div>
                                         </form>
-                                    </div>
-                                    <div class="card-footer text-center py-3">
-                                        <div class="small"><a href="page/franch/register">회원가입</a></div>
                                     </div>
                                 </div>
                             </div>

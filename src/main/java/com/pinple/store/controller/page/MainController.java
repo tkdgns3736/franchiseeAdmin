@@ -61,10 +61,10 @@ public class MainController {
 	}
 
 	// 카드거래정보 페이지
-	@RequestMapping("/cardTradeInfo")
-	public String cardTradeInfo() {
+	@RequestMapping("/codeCreate")
+	public String codeCreate() {
 
-		return "management/cardTradeInfo";
+		return "management/codeCreate";
 	}
 	
 	// 회원정보 페이지

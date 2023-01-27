@@ -56,7 +56,7 @@
 							 	
 							 		<div >
 							 		<button type="submit" class="btn btn-secondary" >확인</button>
-							      <button type="submit" class="btn" style="border-color: #6c757d;">취소</button>
+							      <button type="button" class="btn" style="border-color: #6c757d;"  onClick="location.href='page/management/monthTradeInfo'">취소</button>
 							 		</div>
 							  
 								</div>

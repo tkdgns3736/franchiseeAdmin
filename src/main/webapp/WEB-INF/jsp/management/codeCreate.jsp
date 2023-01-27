@@ -8,7 +8,7 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">카드거래정보</h1>
+                        <h1 class="mt-4">가입코드 발급</h1>
                    </div>
                 </main>
                 <jsp:include page="/WEB-INF/jsp/layout/footerLayout.jsp"/>

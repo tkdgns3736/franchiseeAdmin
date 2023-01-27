@@ -49,18 +49,43 @@
 			alert(year+" - "+month +"Code : "+gropCode);
 		});
 	    
-	  	
-	    <%-- 테이블 --%>
-	    $('#datatablesSimple').DataTable();
+	    var lang_kor = {
+	            "decimal" : "",
+	            "emptyTable" : "데이터가 없습니다.",
+	            "info" : "_START_ - _END_ (총 _TOTAL_ 개)",
+	            "infoEmpty" : "0개",
+	            "infoFiltered" : "(전체 _MAX_ 개 중 검색결과)",
+	            "infoPostFix" : "",
+	            "thousands" : ",",
+	            "lengthMenu" : "_MENU_ 개씩 보기",
+	            "loadingRecords" : "로딩중...",
+	            "processing" : "처리중...",
+	            "search" : "검색 : ",
+	            "zeroRecords" : "검색된 데이터가 없습니다.",
+	            "paginate" : {
+	                "first" : "첫 페이지",
+	                "last" : "마지막 페이지",
+	                "next" : "다음",
+	                "previous" : "이전"
+	            },
+	            "aria" : {
+	                "sortAscending" : " :  오름차순 정렬",
+	                "sortDescending" : " :  내림차순 정렬"
+	            }
+	        };
 	    
+	    <%-- 테이블 --%>
+	    $('#datatablesSimple').DataTable({
+            language : lang_kor //or lang_eng
+        });
 	    
 	})
   </script>
   <style>
   
-  .table-striped th{text-align: center !important; vertical-align: middle; !important;}
+  .table-striped th{text-align: center !important; vertical-align: middle; !important; border: 1px solid #444444;}
   .table-striped thead tr th{text-align: center !important; vertical-align: middle; !important;}
-  .table-striped td{text-align: center !important; vertical-align: middle; !important;}
+  .table-striped td{text-align: center !important; vertical-align: middle; !important; border: 1px solid #444444;}
   
 	table {font-size: 80%;}
   </style>
@@ -72,13 +97,16 @@
                     <div class="container-fluid px-4">
                     	<h2 class="mt-2">월별정산관리</h2>	
                     	
+                    	<br>
                     	<div class="row">
-	                    	<div class="col-sm-4">
-	                        	
-	                        </div>
 	                        <div class="col-sm-8">
 		                        <form class= "form-inline mt-2" >
 		                          	<div class="input-group ">
+		                          	
+		                          		<p class="h4 ms-2" style="font-weight: 300;">조회일자&nbsp;</p>
+				                		<input class="form-control form-control-sm ms-2 " id="date-picker-year"  type="text"  style="font-size: -0.125rem; height: 34px;" />
+				                		<input class="form-control form-control-sm ms-2 " id="date-picker-month" type="text"  style="font-size: -0.125rem; height: 34px;"/>
+		                          	
 										<p class="h4 ms-2" style="font-weight: 300;">그룹코드&nbsp;</p>
 										<select class="form-select  form-control-sm" style="height: 0px;">
 										  <option selected></option>
@@ -86,16 +114,17 @@
 										  <option value="2">Two</option>
 										  <option value="3">Three</option>
 										</select>
-			                			<p class="h4 ms-2" style="font-weight: 300;">조회일자&nbsp;</p>
-			                		<input class="form-control form-control-sm ms-2 " id="date-picker-year"  type="text"  style="font-size: -0.125rem; height: 34px;" />
-			                		<input class="form-control form-control-sm ms-2 " id="date-picker-month" type="text"  style="font-size: -0.125rem; height: 34px;"/>
+			                		
 			                    	<button class="btn btn-primary " type="button" id="date-picker" style="height: 34px;"><i class="fas fa-search"></i></button>
 		                			</div>
 		            			</form>
 	            			</div>
-            			</div>
-                        <br>
-                    	
+	            			
+	            			<div class="col-sm-4">
+	                        	
+	                        </div>
+	            			
+            			</div>	
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
@@ -126,12 +155,17 @@
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
+                                        <th>총합계</th>
+                                        <th></th>
+                                          <th></th>
+                                          <th></th>
+                                          <th></th>
+                                          <th></th>
+                                          <th></th>
+                                          <th></th>
+                                          <th></th>
+                                          <th></th>
+                                          <th></th>                   
                                         </tr>
                                     </tfoot>
                                     <tbody>

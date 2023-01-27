@@ -13,30 +13,32 @@ import com.pinple.store.common.vo.ResponseVO;
 import com.pinple.store.util.RestTemplateUtil;
 
 @Controller
-@RequestMapping("/page/franch")
-public class franchController {
+@RequestMapping("/page/casino")
+public class casinoController {
 
 	@Autowired
 	private RestTemplateUtil restTemplateUtil;
 	
-	// 마이 페이지
-	@RequestMapping("/franchiseeInfo")
-	public String franchiseeInfo(ModelMap modelMap){
-		
-		return "franchisee/franchiseeInfo";
+	// 정산 & 거래내역
+	@RequestMapping("/tradeInfo")
+	public String tradeInfo() {
+
+		return "casino/tradeInfo";
 	}
 	
-	// 가맹점패스워드 변경
-	@RequestMapping("/changePass")
-	public String changePass() {
+	//포인트 변경
+	@RequestMapping("/changePoint")
+	public String changePoint(){
+		
+		return "casino/changePoint";
+	}
+	
+	// 환율등록
+	@RequestMapping("/exchangeRate")
+	public String exchangeRate() {
 
-		return "franchisee/changePass";
+		return "casino/exchangeRate";
 	}
 
-	// 가맹점 정보 변경
-	@RequestMapping("/changeFranchInfo")
-	public String changeFranchInfo() {
-
-		return "franchisee/changeFranchInfo";
-	}
+	
 }

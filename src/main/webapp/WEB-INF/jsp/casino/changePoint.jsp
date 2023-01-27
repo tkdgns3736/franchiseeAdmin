@@ -8,7 +8,7 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">회원검색</h1>
+                        <h1 class="mt-4">포인트 변경</h1>
                    </div>
                 </main>
                 <jsp:include page="/WEB-INF/jsp/layout/footerLayout.jsp"/>
