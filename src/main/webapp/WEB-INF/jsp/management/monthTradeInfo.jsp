@@ -83,9 +83,9 @@
   </script>
   <style>
   
-  .table-striped th{text-align: center !important; vertical-align: middle; !important; border: 1px solid #444444;}
+  .table-striped th{text-align: center !important; vertical-align: middle; !important; border: 1px solid #c6c9cc;}
   .table-striped thead tr th{text-align: center !important; vertical-align: middle; !important;}
-  .table-striped td{text-align: center !important; vertical-align: middle; !important; border: 1px solid #444444;}
+  .table-striped td{text-align: center !important; vertical-align: middle; !important; border: 1px solid #c6c9cc;}
   
 	table {font-size: 80%;}
   </style>
@@ -95,27 +95,27 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
+                    	<div style="padding-bottom: 50px;">
                     	<h2 class="mt-2">월별정산관리</h2>	
-                    	
-                    	<br>
-                    	<div class="row">
+                    	</div>
+                    	<div class="row" style="padding-bottom: 15px;">
 	                        <div class="col-sm-8">
 		                        <form class= "form-inline mt-2" >
 		                          	<div class="input-group ">
 		                          	
 		                          		<p class="h4 ms-2" style="font-weight: 300;">조회일자&nbsp;</p>
-				                		<input class="form-control form-control-sm ms-2 " id="date-picker-year"  type="text"  style="font-size: -0.125rem; height: 34px;" />
-				                		<input class="form-control form-control-sm ms-2 " id="date-picker-month" type="text"  style="font-size: -0.125rem; height: 34px;"/>
+				                		<input class=" ms-2 " id="date-picker-year"  type="text"  style="font-size: -0.125rem; height: 30px; width: 120px; border: 1px solid #ced4da; text-align: center;" />
+				                		<input class=" ms-2 " id="date-picker-month" type="text"  style="font-size: -0.125rem; height: 30px; width: 120px; border: 1px solid #ced4da; text-align: center;"/>
 		                          	
 										<p class="h4 ms-2" style="font-weight: 300;">그룹코드&nbsp;</p>
-										<select class="form-select  form-control-sm" style="height: 0px;">
+										<select class="" style="font-size: -0.125rem; height: 30px; width:120px; border: 1px solid #ced4da; text-align: center;">
 										  <option selected></option>
 										  <option value="1">One</option>
 										  <option value="2">Two</option>
 										  <option value="3">Three</option>
 										</select>
 			                		
-			                    	<button class="btn btn-primary " type="button" id="date-picker" style="height: 34px;"><i class="fas fa-search"></i></button>
+			                    	<button class="btn btn-primary " type="button" id="date-picker" style="height: 30px;"><i class="fas fa-search" style="vertical-align: initial;"></i></button>
 		                			</div>
 		            			</form>
 	            			</div>
