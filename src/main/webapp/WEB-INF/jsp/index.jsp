@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<jsp:include page="/WEB-INF/jsp/include/setting.jsp"/>
 
+<script type="text/javascript">
 
-<script>
 	function login(){
+		
 		 $.ajax({
 	            url : "api/login/request",
 	            type : 'POST', 
 	            data : $("#loginForm").serialize(), 
-	            async: false,
 	            success : function(result, status, xhr) {
 	            	console.log(xhr.getResponseHeader('X-PINP-STATUS'));
 	            	
@@ -25,9 +26,6 @@
 		
 	
 </script>
-
-
-<jsp:include page="/WEB-INF/jsp/include/setting.jsp"/>
     <body class="bg-primary">
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content" style="background-color: dimgrey;">
@@ -53,6 +51,7 @@
                                             </div>
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0" style="float:right;">    
                                                 <a class="btn btn-primary" href="#" onclick="login();">로그인</a>
+                                                
                                             </div>
                                         </form>
                                     </div>

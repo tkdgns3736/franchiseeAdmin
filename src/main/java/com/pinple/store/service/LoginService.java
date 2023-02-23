@@ -13,6 +13,7 @@ import com.pinple.store.common.vo.LoginMemberVO;
 import com.pinple.store.common.vo.Menu;
 import com.pinple.store.common.vo.ResponseVO;
 import com.pinple.store.enums.CommonConstants;
+import com.pinple.store.util.CommonUtil;
 import com.pinple.store.util.RestTemplateUtil;
 
 
@@ -41,9 +42,8 @@ public class LoginService {
 
 		// 모바일 로그인 ( WS_0002 )
 		String path = "https://extchange.paysmart.co.kr/moa/web/admin/store/login.do";
-		
-		loginMemberVO.setStoreSeq("6058190742_20180118152345_0000000000001");
-
+		String defalutStoreId = "6058190742";
+		loginMemberVO.setStoreSeq(CommonUtil.createStoreSeq(defalutStoreId));
 		ResponseVO responseVO = restTemplateUtil.requsetPost(path, loginMemberVO);
 
 		return responseVO;

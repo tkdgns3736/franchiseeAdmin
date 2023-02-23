@@ -24,6 +24,7 @@ import com.pinple.store.common.vo.CurrentMember;
 import com.pinple.store.common.vo.LoginMemberVO;
 import com.pinple.store.common.vo.ResponseVO;
 import com.pinple.store.service.LoginService;
+import com.pinple.store.util.CommonUtil;
 import com.pinple.store.util.HeaderUtil;
 import com.pinple.store.util.RestTemplateUtil;
 
@@ -62,7 +63,7 @@ public class mainApiController extends BaseFormController{
 			String urlkey = "https://extchange.paysmart.co.kr/moa/web/admin/store/trade/get_list_by_day.do";
 			
 			Map<String, Object> mapkey = new HashMap<String, Object>();
-			mapkey.put("storeSeq", "6058190742_20180118152345_0000000000001");
+			mapkey.put("storeSeq", CommonUtil.createStoreSeq(currentMember.getStoreID()));
 			mapkey.put("authKey", currentMember.getAuthKey());
 			mapkey.put("userId", currentMember.getUserID());
 /*			mapkey.put("sDate", params.get("sDate"));
@@ -79,6 +80,7 @@ public class mainApiController extends BaseFormController{
 	        ArrayList<Map<String, Object>> chargeRrequest =  (ArrayList<Map<String, Object>>) responseVO.getParams().get("results");
 	       //
 	        log.info(chargeRrequest.toString());
+	        
 	        return new ResponseEntity<ArrayList<Map<String, Object>>>( chargeRrequest, HeaderUtil.createCode(responseVO.getResultCode()), HttpStatus.OK);
 		}
 

@@ -21,6 +21,32 @@ public class AuthenticationInterceptor  extends HandlerInterceptorAdapter{
 		
 		HttpSession session = request.getSession();
 		
+		String uri = request.getServletPath();
+		
+		String[] nonLoginUrls = new String[] {
+				"/",
+				"/page/term/privacy",
+				"/page/term/use",
+				
+				
+				"/api/login/request"
+		};
+		
+		boolean isNonLoginExclude = false;
+		for(String nonLoginUrl : nonLoginUrls) {
+
+			if(nonLoginUrl.equals(uri)) {
+
+				isNonLoginExclude = true;
+				break;
+			}
+		}
+		
+		
+		//비로그인 허용일 경우
+		if(isNonLoginExclude)
+			return true;
+		
 		
 		if(session == null || session.getAttribute("currentMember") == null) {
 			
@@ -28,8 +54,11 @@ public class AuthenticationInterceptor  extends HandlerInterceptorAdapter{
 			flashMap.put("errorMessage", "로그인 후 이용해 주세요.");
 			FlashMapManager flashMapManager = RequestContextUtils.getFlashMapManager(request);
 			flashMapManager.saveOutputFlashMap(flashMap, request, response);
+			log.info("==============================Interceptor preHandle catch==============================");
 			response.sendRedirect(request.getContextPath() + "/");
+			return false;
 		}
+		
 		return true;
 	}
 
