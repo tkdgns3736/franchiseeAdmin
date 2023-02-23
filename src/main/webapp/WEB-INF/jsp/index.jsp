@@ -4,7 +4,7 @@
 <script>
 	function login(){
 		 $.ajax({
-	            url : "api/login/request", // 요기에
+	            url : "api/login/request",
 	            type : 'POST', 
 	            data : $("#loginForm").serialize(), 
 	            async: false,
