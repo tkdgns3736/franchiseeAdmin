@@ -1,20 +1,18 @@
 package com.pinple.store.controller.page;
 
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.pinple.store.common.vo.ResponseVO;
+
+import com.pinple.store.common.vo.CurrentMember;
+import com.pinple.store.controller.BaseFormController;
 import com.pinple.store.util.RestTemplateUtil;
 
 @Controller
 @RequestMapping("/page/casino")
-public class casinoController {
+public class casinoController extends BaseFormController {
 
 	@Autowired
 	private RestTemplateUtil restTemplateUtil;
@@ -36,6 +34,10 @@ public class casinoController {
 	// 환율등록
 	@RequestMapping("/exchangeRate")
 	public String exchangeRate() {
+		
+		
+		//CurrentMember currentMember = this.getCurrentMember();
+		System.out.println(getCurrentMember());
 
 		return "casino/exchangeRate";
 	}

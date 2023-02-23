@@ -9,8 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class FranchiseeAdminApplication {
 		private static Logger log = LoggerFactory.getLogger(FranchiseeAdminApplication.class);
 	public static void main(String[] args) {
-		
-		
+	
 		SpringApplication.run(FranchiseeAdminApplication.class, args);
 	}
 

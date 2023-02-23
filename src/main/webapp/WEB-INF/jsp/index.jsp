@@ -1,5 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
+
+<script>
+	function login(){
+		 $.ajax({
+	            url : "api/login/request", // 요기에
+	            type : 'POST', 
+	            data : $("#loginForm").serialize(), 
+	            async: false,
+	            success : function(result, status, xhr) {
+	            	console.log(xhr.getResponseHeader('X-PINP-STATUS'));
+	            	
+	            	if(xhr.getResponseHeader('X-PINP-STATUS')=="0000")
+	            		location.href = 'page/management/monthTradeInfo';
+	            	
+	            	else
+	            		alert("로그인 실패"); 
+	            },
+	            error : function(xhr, status) {
+	                alert(xhr + " : " + status);
+	            }
+	        });
+	}
+		
+	
+</script>
+
+
 <jsp:include page="/WEB-INF/jsp/include/setting.jsp"/>
     <body class="bg-primary">
         <div id="layoutAuthentication">
@@ -11,13 +38,13 @@
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">로그인</h3></div>
                                     <div class="card-body">
-                                        <form>
+                                        <form id="loginForm" method="POST">
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="inputEmail" type="email" placeholder="name@example.com" />
+                                                <input class="form-control" id="userId" name="userId" type="text"/>
                                                 <label for="inputEmail">아이디</label>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="inputPassword" type="password" placeholder="Password" />
+                                                <input class="form-control" id="userPw" name="userPw" type="password" placeholder="Password" />
                                                 <label for="inputPassword">비밀번호</label>
                                             </div>
                                             <div class="form-check mb-3">
@@ -25,7 +52,7 @@
                                                 <label class="form-check-label" for="inputRememberPassword">아이디 저장</label>
                                             </div>
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0" style="float:right;">    
-                                                <a class="btn btn-primary" href="page/management/monthTradeInfo" >로그인</a>
+                                                <a class="btn btn-primary" href="#" onclick="login();">로그인</a>
                                             </div>
                                         </form>
                                     </div>

@@ -1,8 +1,13 @@
 package com.pinple.store.common.vo;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import org.springframework.stereotype.Component;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 
 /**
@@ -25,6 +30,9 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
+@Getter
+@Setter
+@ToString
 public class ResponseVO {
 
 	/**
@@ -48,43 +56,5 @@ public class ResponseVO {
 	
 	private Map<String, Object> params;
 
-	public String getStoreSeq() {
-		return storeSeq;
-	}
 
-	public void setStoreSeq(String storeSeq) {
-		this.storeSeq = storeSeq;
-	}
-
-	public String getResult() {
-		return result;
-	}
-
-	public void setResult(String result) {
-		this.result = result;
-	}
-
-	public String getResultCode() {
-		return resultCode;
-	}
-
-	public void setResultCode(String resultCode) {
-		this.resultCode = resultCode;
-	}
-
-	public Map<String, Object> getParams() {
-		return params;
-	}
-
-	public void setParams(Map<String, Object> params) {
-		this.params = params;
-	}
-
-	@Override
-	public String toString() {
-		return "ResponseVO [storeSeq=" + storeSeq + ", result=" + result + ", resultCode=" + resultCode + ", params="
-				+ params + "]";
-	}
-	
-	
 }

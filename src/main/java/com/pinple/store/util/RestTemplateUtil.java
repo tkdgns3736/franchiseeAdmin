@@ -1,12 +1,6 @@
 package com.pinple.store.util;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
+
 import java.nio.charset.Charset;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
@@ -15,12 +9,10 @@ import java.security.cert.X509Certificate;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.naming.AuthenticationException;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
-
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -103,6 +95,54 @@ public class RestTemplateUtil {
 		return responseVO;
 	}
 	
+	public ResponseVO requsetPost(String path, Object object) {
+
+
+		String requestURL = path;
+
+		try {
+			//인증서 무시
+			sslTrustAllCerts();
+			
+			String params = objectMapper.writeValueAsString(object);
+
+			HttpHeaders httpHeaders = new HttpHeaders();
+			httpHeaders.setContentType(new MediaType("application", "json", Charset.forName("UTF-8")));
+
+			HttpEntity<String> entity = new HttpEntity<>(params, httpHeaders);
+
+			RestTemplate restTemplate = new RestTemplate();
+			ResponseEntity<String> responseEntity = restTemplate.exchange(requestURL, HttpMethod.POST, entity, String.class);
+			if(responseEntity == null || StringUtils.isEmpty(responseEntity.getBody())) {
+
+				throw new RestClientException(null);
+			}
+			
+			log.info("### path"+" ::: " +requestURL);
+			responseVO = parseRespovesVO(responseEntity.getBody());
+
+		} catch (RestClientException e) {
+			e.printStackTrace();
+
+			responseVO.setResultCode("9999");
+
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+
+			responseVO.setResultCode("9999");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+			responseVO.setResultCode("9999");;
+
+		}
+
+		return responseVO;
+	}
+
+	
+	
 	private ResponseVO parseRespovesVO(String jsonStr) throws JsonMappingException, JsonProcessingException {
 
 		Map<String, Object> _params = objectMapper.readValue(jsonStr, Map.class);
@@ -158,89 +198,5 @@ public class RestTemplateUtil {
 			e.printStackTrace();
 		}
 	}
-		
-//	public static Map<String, Object> httpPostBodyConnection(String UrlData, Map<String, Object> Param) throws JsonProcessingException{
-//		
-//		Map<String, Object> map = new HashMap<String, Object>();
-//	
-//		String ParamData ="";
-//	
-//		//ParamData = objectMapper.writeValueAsString(this.Param);
-//		
-//		//http 요청 시 필요한 url 주소를 변수 선언
-//		String totalUrl = "";
-//		totalUrl = UrlData.trim().toString();
-//		//http 통신을 하기위한 객체 선언 실시
-//		URL url = null;
-//		HttpURLConnection conn = null;
-//		BufferedReader br = null;
-//
-//		try {
-//			//ssl 무시 코드
-//			sslTrustAllCerts();
-//			//파라미터로 들어온 url을 사용해 connection 실시
-//			url = new URL(totalUrl);	
-//			conn = (HttpURLConnection) url.openConnection();
-//	        
-//			//http 요청에 필요한 타입 정의 실시
-//			conn.setRequestMethod("POST");
-//			conn.setRequestProperty("Content-Type", "application/json; utf-8"); //post body json으로 던지기 위함
-//			conn.setRequestProperty("Accept", "application/json");
-//			conn.setDoOutput(true); //OutputStream을 사용해서 post body 데이터 전송
-//			try (OutputStream os = conn.getOutputStream()){
-//				byte request_data[] = String.valueOf(ParamData).getBytes("utf-8");
-//				os.write(request_data);
-//				os.close();
-//			}
-//			catch(Exception e) {
-//				e.printStackTrace();
-//			}										        	            
-//	        
-//			//http 요청 실시
-//			conn.connect();
-//			System.out.println("http 요청 방식 : "+"POST BODY JSON");
-//			System.out.println("http 요청 타입 : "+"application/json");
-//			System.out.println("http 요청 주소 : "+UrlData);
-//			System.out.println("http 요청 데이터 : "+ParamData);
-//			System.out.println("");
-//	        
-//			  // 응답 내용(BODY) 구하기        
-//	        try (InputStream in = conn.getInputStream();    
-//	                ByteArrayOutputStream out = new ByteArrayOutputStream()) {
-//	            
-//	            byte[] buf = new byte[1024 * 8];
-//	            int length = 0;
-//	            while ((length = in.read(buf)) != -1) {
-//	                out.write(buf, 0, length);
-//	            } 
-//	            //json to mapper
-//	            String sJson = new String(out.toByteArray(), "UTF-8");
-//	            ObjectMapper mapper = new ObjectMapper();
-//	               
-//	            
-//	            
-//	            map = mapper.readValue(sJson, Map.class);
-//	            
-//	        }
-//	            // 접속 해제
-//	            conn.disconnect();
-// 
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		} finally { 
-//			//http 요청 및 응답 완료 후 BufferedReader를 닫아줍니다
-//			try {
-//				if (br != null) {
-//					br.close();	
-//				}
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//		return map;	 		
-//	}
-//
-//
-//
-	
+			
 }

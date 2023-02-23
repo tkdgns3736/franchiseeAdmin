@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 
 <!DOCTYPE html>
 <html>
@@ -17,11 +19,6 @@
         <script src="https://code.jquery.com/jquery-3.5.1.js"></script> 
         
         
-        <!-- 임시 js -->
-        <!-- <link href="https://cdn.jsdelivr.net/npm/simple-datatables@6.0.0-12/dist/style.css" rel="stylesheet" />
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@6.0.0-12"></script> -->
-        <!-- <script src="js/datatables-simple-demo.js"></script> -->
-        
         <link href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" rel="stylesheet" />
 		<script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
         
@@ -30,6 +27,12 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"/>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.ko.min.js"></script>
 
+		<%-- 페이지 오류 문구 출력 --%>
+		<c:if test="${not empty errorMessage}">
+		<script>
+			alert('${errorMessage}');
+		</script>
+		</c:if>
 		
 	</head>
 	

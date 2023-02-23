@@ -8,7 +8,9 @@
 	  	var Now = new Date(); // 현재 날짜 및 시간
 		var nowyear = Now.getFullYear();
 		var nowMonth = Now.getMonth() + 1; // 월
-
+		var nowDay = Now.getDate(); // 일
+		
+		
 		function pluszero(time){
 			var time = time.toString(); // 시간을 숫자에서 문자로 바꿈
 			if(time.length < 2){ //2자리 보다 작다면
@@ -19,23 +21,21 @@
 			}
 		}
 		nowMonth = pluszero(nowMonth); //만들었던 함수 적용
+		nowDay = pluszero(nowDay);
 		
-	  $('#date-picker-year').val(nowyear);
-	  $('#date-picker-month').val(nowMonth);
+		var nowT = nowyear+nowMonth+nowDay;
+	  $('#date-picker-start').val(nowT);
+	  $('#date-picker-end').val(nowT);
 	  
 	 	<%-- 조회 년 datepicker --%>
-	    $('#date-picker-year').datepicker({
-	        format: "yyyy",
-	        minViewMode : 2, 
-	        maxViewMode : 2,
+	    $('#date-picker-start').datepicker({
+	        format: "yyyymmdd",
 	        language: "ko",
 	        autoclose: true,
 	    })
 	 	<%-- 조회 월 datepicker --%>
-	    $('#date-picker-month').datepicker({
-	        format: "mm",
-	        minViewMode : 1 ,
-	        maxViewMode : 1 ,
+	    $('#date-picker-end').datepicker({
+	        format: "yyyymmdd",
 	        language: "ko",
 	        autoclose: true
 	    }) 
@@ -43,11 +43,52 @@
 	  	<%-- 월별정산조회 버큰 click --%>
 	    $('#date-picker').on('click', function(e) {
 			e.preventDefault();
-			var year = $('#date-picker-year').val();
-			var month = $('#date-picker-month').val();
-			var gropCode = $('.form-select').val();
-			alert(year+" - "+month +"Code : "+gropCode);
+			
+			
+			 $.ajax({
+		        url : "/api/management/dayTradeInfo", // 요기에
+		        type : 'POST', 
+		        data : {sDate : $('#date-picker-start').val(), eDate : $('#date-picker-end').val(), seachType : $('.form-select').val()},	
+			 	success : function(result, status, xhr) {
+	            	if(xhr.getResponseHeader('X-PINP-STATUS')=="0000")
+	            		dataTable(result);
+	            	
+	            	else
+	            		alert("조회실패"); 
+	            },
+	            error : function(xhr, status) {
+	                alert(xhr + " : " + status);
+	            }
+	        });
+			 
 		});
+	    
+	    function dataTable(result){
+	    	var table = $("#datatablesSimple").DataTable();
+	    	table.destroy();
+	   		$('#datatablesSimple').DataTable({
+	      	language : lang_kor, //or lang_eng
+	      	data : result,
+            columns : [
+            	
+                {data: "TRACE_TYPE_DETAIL"},
+                {data: "INPUTDATE"},
+                {data: "GAME_CODE"},
+                {data: "FEE_RATIO"},
+                {data: "TRACE_TYPE"},
+                {data: "FEE"},
+                {data: "CNT"},
+                {data: "FEE_SUM"},
+                {data: "POINT"},
+                {data: "STORE_NM"}
+            ]
+			/* var year = $('#date-picker-start').val();
+			var month = $('#date-picker-end').val();
+			var gropCode = $('.form-select').val();
+			alert(year+" - "+month +"Code : "+gropCode); */
+			});
+		}
+	    
 	    
 	    var lang_kor = {
 	            "decimal" : "",
@@ -76,7 +117,7 @@
 	    
 	    <%-- 테이블 --%>
 	    $('#datatablesSimple').DataTable({
-            language : lang_kor //or lang_eng
+            language : lang_kor, //or lang_eng
         });
 	    
 	})
@@ -95,8 +136,8 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                    	<div style="padding-bottom: 50px;">
-                    	<h2 class="mt-2">월별정산관리</h2>	
+                    	<!-- <div style="padding-bottom: 50px;">
+                    	<h2 class="mt-2">일별정산관리</h2>	
                     	</div>
                     	<div class="row" style="padding-bottom: 15px;">
 	                        <div class="col-sm-8">
@@ -120,15 +161,36 @@
 		            			</form>
 	            			</div>
 	            			
-	            			<div class="col-sm-4">
-	                        	
-	                        </div>
-	            			
-            			</div>	
+	            			<div class="col-sm-4"></div>
+            			</div>	 -->
                         <div class="card mb-4">
                             <div class="card-header">
-                                <i class="fas fa-table me-1"></i>
-                                월별 정산 내역
+                                <H4>일별 정산 내역</H4>
+                                <div class="row" > <!-- style="padding-bottom: 15px;" -->
+	                        <div class="col-sm-8">
+		                        <form class= "form-inline mt-2" >
+		                          	<div class="input-group ">
+		                          	
+		                          		<p class="ms-2" style="font-weight: 300;">조회일자&nbsp;</p>
+				                		<input class=" ms-2 " id="date-picker-start"  type="text"  style="font-size: -0.125rem; height: 25px; width: 120px; border: 1px solid #ced4da; text-align: center;" />
+				                		<input class=" ms-2 " id="date-picker-end" type="text"  style="font-size: -0.125rem; height: 25px; width: 120px; border: 1px solid #ced4da; text-align: center;"/>
+		                          	
+										<p class="ms-2" style="font-weight: 300;">그룹코드&nbsp;</p>
+										<select class="" style="font-size: -0.125rem; height: 25px; width:120px; border: 1px solid #ced4da; text-align: center;">
+										  <option selected></option>
+										  <option value="1">0</option>
+										  <option value="2">0</option>
+										  <option value="3">0</option>
+										</select>
+			                		
+			                    	<button class="btn btn-primary " type="button" id="date-picker" style="height: 25px;width: 45px;font-size: 14px;" >조회</button>
+		                			</div>
+		            			</form>
+	            			</div>
+	            			
+	            			<div class="col-sm-4"></div>
+            			</div>	
+                                
                             </div>
                             <div class="card-body">
                            	 	<div class="table-responsive">
@@ -169,21 +231,6 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <c:forEach items="${list}" var="list">
-										<tr>
-										<td > HI</td>
-										<td>${list.seqNo}</td>
-										<td>${list.traceType}</td>
-										<td>${list.traceType}</td>
-										<td>${list.traceType}</td>
-										<td>${list.traceType}</td>
-										<td>${list.traceType}</td>
-										<td>${list.traceType}</td>
-										<td>${list.traceType}</td>
-										<td>${list.traceType}</td>
-										<td >${list.traceType}</td>
-										</tr>
-										</c:forEach>
                                     </tbody>                        
                            		</table>
                             </div>

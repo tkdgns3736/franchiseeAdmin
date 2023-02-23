@@ -15,11 +15,4 @@ public class HomeController {
         return "index";
     }
 	
-	
-	//로그인 페이지
-		@RequestMapping("/teset")
-	    public String teset() {
-	        
-	        return "teset";
-	    }
 }
