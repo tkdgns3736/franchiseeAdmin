@@ -17,8 +17,13 @@
         <script src="https://code.jquery.com/jquery-3.5.1.js"></script> 
         
         
-        <link href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+       	<link href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" rel="stylesheet" />
 		<script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+        
+        <!--  <link href="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js" rel="stylesheet" />
+		<script src="https://cdn.datatables.net/1.13.2/js/dataTables.bootstrap4.min.js"></script> -->
+        
+        
         
         
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" ></script>

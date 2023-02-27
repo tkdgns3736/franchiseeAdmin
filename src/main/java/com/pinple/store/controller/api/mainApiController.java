@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pinple.store.controller.BaseFormController;
+import com.pinple.store.enums.CommonConstants;
 import com.pinple.store.common.vo.CurrentMember;
 import com.pinple.store.common.vo.LoginMemberVO;
 import com.pinple.store.common.vo.ResponseVO;
@@ -76,12 +77,22 @@ public class mainApiController extends BaseFormController{
 	        mapkey.put("seachType","0");	
 			
 	        ResponseVO responseVO = restTemplateUtil.requsetPost(urlkey, mapkey);
+	        	ArrayList<Map<String, Object>> chargeRrequest =  (ArrayList<Map<String, Object>>) responseVO.getParams().get("results");
+	        if(CommonConstants.CODE_SUCCESS.equals(responseVO.getResultCode())) {
 	        
-	        ArrayList<Map<String, Object>> chargeRrequest =  (ArrayList<Map<String, Object>>) responseVO.getParams().get("results");
-	       //
-	        log.info(chargeRrequest.toString());
+		        
+		       //
+		        log.info(chargeRrequest.toString());
+		        
+		        return new ResponseEntity<ArrayList<Map<String, Object>>>( chargeRrequest, HeaderUtil.createCode(responseVO.getResultCode()), HttpStatus.OK);
+	        }
 	        
-	        return new ResponseEntity<ArrayList<Map<String, Object>>>( chargeRrequest, HeaderUtil.createCode(responseVO.getResultCode()), HttpStatus.OK);
+	        else {
+	        	
+	        	 return new ResponseEntity<ArrayList<Map<String, Object>>>( chargeRrequest, HeaderUtil.createCode(responseVO.getResultCode()), HttpStatus.OK);
+	        	
+	        }
+	        
 		}
 
 

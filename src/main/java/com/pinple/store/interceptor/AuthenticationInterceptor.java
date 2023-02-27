@@ -27,9 +27,9 @@ public class AuthenticationInterceptor  extends HandlerInterceptorAdapter{
 				"/",
 				"/page/term/privacy",
 				"/page/term/use",
+				"/error",
 				
-				
-				"/api/login/request"
+				"/api/login/request",
 		};
 		
 		boolean isNonLoginExclude = false;
@@ -41,14 +41,25 @@ public class AuthenticationInterceptor  extends HandlerInterceptorAdapter{
 				break;
 			}
 		}
+		log.info(uri);
 		
+		/*
+		 * //비로그인 허용일 경우 if(isNonLoginExclude) return true;
+		 */
 		
-		//비로그인 허용일 경우
-		if(isNonLoginExclude)
-			return true;
-		
-		
+		/*
+		 * if(!uri.startsWith("/page")) { response.sendRedirect(request.getContextPath()
+		 * + "/error"); return false; }
+		 */
+			
+			
+			
 		if(session == null || session.getAttribute("currentMember") == null) {
+			
+			
+			//비로그인 허용일 경우
+			if(isNonLoginExclude)
+				return true;
 			
 			FlashMap flashMap = new FlashMap();
 			flashMap.put("errorMessage", "로그인 후 이용해 주세요.");
